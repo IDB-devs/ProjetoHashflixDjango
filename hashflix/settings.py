@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 TOKEN_CSRF = os.getenv('TOKEN_CSRF') #no servidor do deploy configurar
 if TOKEN_CSRF:
     SECRET_KEY = TOKEN_CSRF #trocar no servidor
-    CSRF_TRUSTED_ORIGINS = ['Site Url (https://)'] #colocar o caminho do site atual
+    CSRF_TRUSTED_ORIGINS = ['Site Url (https://)'] #colocar o caminho do site atual, com o https mas sem a barra '/' no final do caminho
 else:
     SECRET_KEY = 'django-insecure-@kz7+ch$ws3gd=&88)tyr)1=6w*%y6qhu2ebcv*kn4h7wr^po*'
 
