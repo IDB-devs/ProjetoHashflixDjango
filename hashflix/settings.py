@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +21,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-@kz7+ch$ws3gd=&88)tyr)1=6w*%y6qhu2ebcv*kn4h7wr^po*'
+TOKEN_CSRF = os.getenv('TOKEN_CSRF') #no servidor do deploy configurar
+if TOKEN_CSRF:
+    SECRET_KEY = TOKEN_CSRF #trocar no servidor
+    CSRF_TRUSTED_ORIGINS = ['Site Url (https://)'] #colocar o caminho do site atual
+else:
+    SECRET_KEY = 'django-insecure-@kz7+ch$ws3gd=&88)tyr)1=6w*%y6qhu2ebcv*kn4h7wr^po*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*'] #quais servidores podem rodar o codigo
+ALLOWED_HOSTS = ['*', 'localhost', '127.0.0.1'] #quais servidores podem rodar o codigo
 
 
 # Application definition
@@ -87,7 +93,7 @@ DATABASES = {
 }
 
 import dj_database_url
-import os
+
 
 DATABESE_URL = os.getenv('DATABESE_URL') #para deploy
 if DATABESE_URL:
