@@ -5,7 +5,7 @@ from django.views.generic import TemplateView, ListView, DetailView, FormView, U
 from django.contrib.auth.mixins import LoginRequiredMixin #bloquar paginas para usuarios n logados
 
 #function based views
-# Create your views here.
+#Create your views here.
 #def homepage(request):
     #return render(request, 'homepage.html')
 
@@ -28,6 +28,7 @@ class Homepage(FormView):
             return reverse('filme:login')
         else:
             return reverse('filme:criarconta')
+
 
 #function based views
 # url - view - html
